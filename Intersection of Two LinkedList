@@ -1,0 +1,18 @@
+#include<bits/stdc++.h>
+
+Node* findIntersection(Node *firstHead, Node *secondHead)
+{
+      unordered_set<Node*>s;
+      Node* temp=NULL;
+      while(firstHead!=NULL){
+          s.insert(firstHead);
+          firstHead=firstHead->next;
+      }
+      while(secondHead!=NULL){
+          if(s.find(secondHead)!=s.end())
+           return secondHead;
+           
+        secondHead=secondHead->next;   
+      }
+      return temp;
+}
