@@ -1,0 +1,20 @@
+void f(int ind,vector<int>&num, vector<int>&sum,int s,int n){
+	if(ind==n){
+		sum.push_back(s);
+		return;
+	}
+	// pick 
+	f(ind+1,num,sum,s+num[ind],n);
+	//not pick
+	f(ind+1,num,sum,s,n);	
+}
+
+
+vector<int> subsetSum(vector<int> &num){
+   int n= num.size();
+   vector<int>sum;
+  f(0,num,sum,0,n);
+  sort(sum.begin(),sum.end());
+   return sum;
+   
+}
