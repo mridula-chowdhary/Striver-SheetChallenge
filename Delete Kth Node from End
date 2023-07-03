@@ -1,0 +1,27 @@
+int countNode(Node *head){
+    Node *temp= head;
+    int cnt=0;
+    while(temp !=NULL){
+        cnt++;
+        temp=temp->next;
+    }
+    return cnt;
+}
+
+Node* removeKthNode(Node* head, int K)
+{
+   int totalNode = countNode(head);
+   int reach= totalNode-K;
+   if(K==totalNode) return head->next;
+   Node*temp =head;
+   while(reach){
+      temp=temp->next;
+      reach--;
+   }
+   Node * curr= head;
+   while(curr->next!=temp && curr->next !=NULL){
+       curr=curr->next;
+   }
+   curr->next=temp->next;
+   return head;
+}
