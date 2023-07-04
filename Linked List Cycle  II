@@ -1,0 +1,11 @@
+Node *firstNode(Node *head)
+{
+    Node* temp = head;
+    unordered_set<Node*>s;
+    while(temp!=NULL){
+        if(s.find(temp)!=s.end()) return temp;
+        s.insert(temp);
+        temp=temp->next;
+    }
+    return NULL;
+}
