@@ -1,0 +1,20 @@
+ void f(int ind,int n,int k,vector<int>&arr,vector<vector<int>>&ans, vector<int>&temp){   
+  if(ind==n){
+        if(accumulate(temp.begin(),temp.end(),0)==k)
+         ans.push_back(temp);
+        return;
+    }
+    temp.push_back(arr[ind]);
+    f(ind+1,n,k,arr,ans,temp);
+    temp.pop_back();
+    f(ind+1,n,k,arr,ans,temp);
+
+}
+
+vector<vector<int>> findSubsetsThatSumToK(vector<int> arr, int n, int k)
+{
+     vector<int>temp;
+    vector<vector<int>>ans;
+     f(0,n,k,arr,ans,temp);
+     return ans;    
+}
