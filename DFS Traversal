@@ -1,0 +1,31 @@
+void dfs(int node, unordered_map<int,list<int>>&adj,vector<int>&vis,vector<int>&ans){
+     vis[node]=1;
+     ans.push_back(node);
+     for(auto it:adj[node]){
+         if(!vis[it]){
+             dfs(it,adj,vis,ans);
+         }
+     }
+
+}
+
+vector<vector<int>> depthFirstSearch(int V, int E, vector<vector<int>> &edges)
+{
+    unordered_map<int,list<int>>adj;
+    for(int i=0;i<edges.size();i++){
+        int u=edges[i][0];
+        int v= edges[i][1];
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    vector<int>vis(V,0);
+    vector<vector<int>>temp;
+    for(int i=0;i<V;i++){
+        if(!vis[i]){
+            vector<int>ans;
+            dfs(i, adj,vis,ans);
+            temp.push_back(ans);
+        }
+    }
+    return temp;
+}
