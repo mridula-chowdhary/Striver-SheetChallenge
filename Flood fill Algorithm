@@ -1,0 +1,25 @@
+void dfs(vector<vector<int>> &temp, int row, int cols, int newColor,int initial) {
+  int n = temp.size();
+  int m = temp[0].size();
+  temp[row][cols] = newColor;
+  int delrow[] = {-1, 0, 1, 0};
+  int delcol[] = {0, 1, 0, -1};
+
+  for (int i = 0; i < 4; i++) {
+    int drow = delrow[i] + row;
+    int dcol = delcol[i] + cols;
+    if (drow >= 0 && drow < n && dcol >= 0 && dcol < m && temp[drow][dcol] == initial &&
+        temp[drow][dcol] != newColor) {
+      dfs(temp, drow, dcol, newColor, initial);
+    }
+   }
+
+}
+vector<vector<int>> floodFill(vector<vector<int>> &image, int x, int y, int newColor)
+{
+    vector<vector<int>>temp=image;
+   int initial=image[x][y];
+   dfs(temp,x,y,newColor,initial);
+   return temp;
+
+}
