@@ -1,0 +1,21 @@
+unordered_map<graphNode*,graphNode*> mp;
+ graphNode* clone(graphNode *node){
+    graphNode* new_node = new graphNode(node->data);   
+	 mp[node]=new_node;    
+	 for(auto neighbour: node->neighbours){  
+		if(mp.find(neighbour)!=mp.end()){           
+			new_node->neighbours.push_back(mp[neighbour]);
+			}
+		else {
+				new_node->neighbours.push_back(clone(neighbour));
+			}
+    }
+        return new_node; 
+ }
+
+  graphNode*cloneGraph(graphNode *node) {
+
+		mp.clear();
+		return clone(node);
+	  
+}
