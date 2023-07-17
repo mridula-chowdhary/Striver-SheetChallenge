@@ -1,0 +1,22 @@
+#include <bits/stdc++.h>
+long f(int ind, int*denominations,int n,int value,vector<vector<long>>&dp){
+    if(ind==0){
+       return (value%denominations[0]==0);
+    }
+    if(dp[ind][value]!=-1) return dp[ind][value];
+    //not take
+    long notTake= f(ind-1,denominations,n,value,dp);
+
+    long take=0;
+    if(value>=denominations[ind])
+    take= f(ind,denominations,n,value-denominations[ind],dp);
+
+    return dp[ind][value]=notTake+take;
+}
+
+
+long countWaysToMakeChange(int *denominations, int n, int value)
+{
+    vector<vector<long>>dp(n,vector<long>(value+1,-1));
+    return f(n-1,denominations,n,value,dp);
+}
