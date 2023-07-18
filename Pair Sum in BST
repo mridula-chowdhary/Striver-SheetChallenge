@@ -1,0 +1,17 @@
+void inorder(BinaryTreeNode<int>* root,vector<int>&ans){
+  if(root==NULL) return ;
+   inorder(root->left,ans);
+   ans.push_back(root->data);
+   inorder(root->right, ans);
+}
+bool pairSumBst(BinaryTreeNode<int> *root, int k)
+{
+    vector<int>ans;
+    inorder(root,ans);
+    unordered_map<int,int>mpp;
+    for(auto it:ans){
+        if(mpp.find(k-it)!=mpp.end()) return true;
+        else mpp[it]=1;
+    }
+    return false;
+}
