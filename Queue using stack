@@ -1,0 +1,47 @@
+class Queue {
+    stack<int>s1,s2;
+    int size;
+    
+    public:
+    Queue() {
+        size=0;
+    }
+
+    void enQueue(int val) {
+        while(!s2.empty()){
+           int value=s2.top();
+           s1.push(value);
+           s2.pop();
+          
+        }
+        s1.push(val);
+        size++;
+        while(!s1.empty()){
+           int val= s1.top();
+           s2.push(val);
+           s1.pop();
+        }
+
+    }
+
+    int deQueue() {
+        if(s2.empty()) return -1;
+        int val= s2.top();
+        s2.pop();
+        size--;
+        return val;
+    }
+
+    int peek() {
+        if(s2.empty()) return -1;
+        
+            int p= s2.top();
+            return p;
+        
+    }
+
+    bool isEmpty() {
+        if(size==0) return true;
+        return false;
+    }
+};
