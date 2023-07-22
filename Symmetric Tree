@@ -1,0 +1,11 @@
+bool Symmetric(BinaryTreeNode<int>*root1,BinaryTreeNode<int>*root2){
+    if(root1==NULL && root2==NULL)return true;
+    if(root1->data!=root2->data) return false;
+    return Symmetric(root1->left, root2->right) && Symmetric(root1->right, root2->left);
+}
+
+bool isSymmetric(BinaryTreeNode<int>* root)
+{
+    if(root==NULL) return true;
+    return Symmetric(root->left,root->right); 
+}
