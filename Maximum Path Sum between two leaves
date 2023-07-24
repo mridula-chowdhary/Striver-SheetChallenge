@@ -1,0 +1,15 @@
+long long maxSum(TreeNode<int>*root, long long &maxi){
+      if(root==NULL) return 0;
+      long long leftSum= maxSum(root->left,maxi);
+      long long rightSum = maxSum(root->right,maxi);
+      maxi=max(maxi,leftSum+rightSum+root->val);
+      return root->val+max(leftSum,rightSum);
+}
+long long int findMaxSumPath(TreeNode<int> *root)
+{
+    if(root==NULL || !root->left || !root->right) return -1;
+  long long maxi=0;
+   maxSum(root,maxi);
+  return maxi;
+    
+}
