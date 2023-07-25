@@ -1,0 +1,17 @@
+#include <bits/stdc++.h>
+
+int modularExponentiation(int x, int n, int m) {
+	
+	long long ans=1%m;
+	x%=m;
+	while(n>0){
+		
+      if(n&1)
+		   ans = (long long)(ans) * x % m;;
+		
+	   x = (long long)(x) * x % m; ;
+	  
+	 n>>=1; 
+	}
+	return (int)(ans);
+}
