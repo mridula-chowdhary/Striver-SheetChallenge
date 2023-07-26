@@ -1,0 +1,21 @@
+#include <bits/stdc++.h> 
+void powerSet(int ind,int n,vector<int>v,vector<int>&ans,vector<vector<int>>&temp){
+    if(ind>=n){
+       temp.push_back(ans);
+        return ;
+    }
+    //exclude
+    powerSet(ind+1,n,v,ans,temp);
+    //include
+    ans.push_back(v[ind]);
+    powerSet(ind+1,n,v,ans,temp);
+    ans.pop_back();
+}
+vector<vector<int>> pwset(vector<int>v)
+{
+    vector<vector<int>>temp;
+    vector<int>ans;
+   int n=v.size();
+   powerSet(0,n, v,ans,temp);
+   return temp;
+}
