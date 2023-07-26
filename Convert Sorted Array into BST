@@ -1,0 +1,12 @@
+TreeNode<int>* f(vector<int>&arr,int s,int e){
+    if(s>e) return NULL;
+    int mid= (s+e)/2;
+    TreeNode<int>* node= new TreeNode<int>(arr[mid]);
+    node->left=f(arr,s,mid-1);
+    node->right=f(arr,mid+1,e);
+    return node;
+}
+TreeNode<int>* sortedArrToBST(vector<int> &arr, int n)
+{
+    return f(arr,0,n-1);
+}
